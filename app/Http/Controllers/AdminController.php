@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
+// use App\Tag;
+use App\Todo;
+// use App\Category;
 use App\User;
-use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
 {
@@ -13,119 +15,129 @@ class AdminController extends Controller
     public function addTag(Request $request){
 
         // validation
-        $this->validate($request, [
-            'tagName' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'tagName' => 'required'
+        // ]);
 
-        return Tag::create([
-            'tagName' => $request->tagName
-        ]);
+        // return Tag::create([
+        //     'tagName' => $request->tagName
+        // ]);
 
     }
     public function edit_tag(Request $request){
 
         // validation
-        $this->validate($request, [
-            'tagName' => 'required',
-            'id' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'tagName' => 'required',
+        //     'id' => 'required'
+        // ]);
 
-        return Tag::where('id', $request->id)->update([
-            'tagName' => $request->tagName
-        ]);
+        // return Tag::where('id', $request->id)->update([
+        //     'tagName' => $request->tagName
+        // ]);
 
     }
     public function deleteTag(Request $request){
 
         // validation
-        $this->validate($request, [
-            'id' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'id' => 'required'
+        // ]);
 
-        return Tag::where('id', $request->id)->delete();
+        // return Tag::where('id', $request->id)->delete();
 
     }
     // upload images
     public function upload(Request $request){
-        $this->validate($request, [
-            'file' => 'required|mimes:jpg,jpeg,png'
-        ]);
+        // $this->validate($request, [
+        //     'file' => 'required|mimes:jpg,jpeg,png'
+        // ]);
 
-         $picName = time().'.'.$request->file->extension();
+        //  $picName = time().'.'.$request->file->extension();
 
-         $request->file->move(public_path('upload'), $picName);
+        //  $request->file->move(public_path('upload'), $picName);
 
-         return $picName;
+        //  return $picName;
     }
 
-    public function getTag(){
+    public function getTodos(){
      
-        return Tag::orderBy('id','desc')->get();
+        
+        return response()->json(['results' => Todo::latest()->paginate(15)]);
     }
     
+    public function deleteTodo(Request $request){
+
+        $this->validate($request, [
+            'id' => 'required'
+        ]);
+
+        return Todo::where('id', $request->id)->delete();
+
+    }
     public function deleteImage(Request $request){
 
-        $fileName = $request->imageName;
-        $this->deleteFileFromServer($fileName);
+        // $fileName = $request->imageName;
+        // $this->deleteFileFromServer($fileName);
 
-        return 'done';
+        // return 'done';
     }
 
     public function deleteFileFromServer($fileName){
 
-        $filePath = public_path().'/upload/'.$fileName;
-        if(file_exists($filePath)){
-            @unlink($filePath);
-        }
+        // $filePath = public_path().'/upload/'.$fileName;
+        // if(file_exists($filePath)){
+        //     @unlink($filePath);
+        // }
 
-        return;
+        // return;
     }
 
 
     // category
     public function addCategory(Request $request){
         // validation
-        $this->validate($request, [
-            'categoryName' => 'required',
-            'iconImage' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'categoryName' => 'required',
+        //     'iconImage' => 'required'
+        // ]);
 
-        return Category::create([
-            'categoryName' => $request->categoryName,
-            'iconImage' => $request->iconImage
-        ]);
+        // return Category::create([
+        //     'categoryName' => $request->categoryName,
+        //     'iconImage' => $request->iconImage
+        // ]);
     }
 
     public function getCategory(){
      
-        return Category::orderBy('id','desc')->get();
+        // return Category::orderBy('id','desc')->get();
     }
 
 
     public function editCategory(Request $request){
 
-        // validation
-        $this->validate($request, [
-            'categoryName' => 'required',
-            'iconImage' => 'required',
-            'id' => 'required'
-        ]);
+        // // validation
+        // $this->validate($request, [
+        //     'categoryName' => 'required',
+        //     'iconImage' => 'required',
+        //     'id' => 'required'
+        // ]);
 
 
-        return Category::where('id', $request->id)->update([
-            'categoryName' => $request->categoryName,
-            'iconImage' => $request->iconImage
-        ]);
+        // return Category::where('id', $request->id)->update([
+        //     'categoryName' => $request->categoryName,
+        //     'iconImage' => $request->iconImage
+        // ]);
 
     }
     public function deleteCategory(Request $request){
 
         // validation
-        $this->validate($request, [
-            'id' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'id' => 'required'
+        // ]);
 
-        return Category::where('id', $request->id)->delete();
+        // return Category::where('id', $request->id)->delete();
 
     }
 
@@ -133,22 +145,23 @@ class AdminController extends Controller
     // auth
 
     public function login(){
-        return view('auth.login');
+        // return view('auth.login');
     }
 
     public function getLoginCredentials(Request $request){
 
-        $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'email' => 'required',
+        //     'password' => 'required'
+        // ]);
 
-        $data['users'] = User::where('email', $request->email)->get();
-        $email = $request->email;
+        // $data['users'] = User::where('email', $request->email)->get();
+        // $email = $request->email;
   
-            // echo $data->email;
-        return redirect('/dashboard');
+        //     // echo $data->email;
+        // return redirect('/dashboard');
        
     }
+
 
 }

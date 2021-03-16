@@ -2,118 +2,58 @@ import Vue from 'vue';
 import Router from 'vue-router';
 Vue.use(Router);
 
-import firstPage from './components/pages/myFirstVuePage';
-import newRoutePage from './components/pages/newRoutePage';
-
-import hooks from './components/pages/basic/hooks.vue';
-import methods from './components/pages/basic/methods.vue';
-
 //admin project pages
-import home from './components/pages/home';
-import tags from './admin/pages/tags';
-import category from './admin/pages/category';
-import reports from './admin/pages/reports';
-import records from './admin/pages/records';
+import dashboard from './admin/pages/dashboard';
+import post from './admin/pages/post';
+import albums from './admin/pages/albums';
+import photos from './admin/pages/photos';
+import comments from './admin/pages/comments';
+import users from './admin/pages/users';
+import todos from './admin/pages/todos';
 
-import certificates from './admin/certificates/certificates';
-
-import officials from './admin/barangay/officials';
-import events from './admin/barangay/events';
-import announcements from './admin/barangay/announcements';
-import batch from './admin/barangay/batch';
-import about from './admin/barangay/about';
-
-import login from './admin/auth/login';
-// components vuex
-import usecom from './vuex/usecom';
 
 const routes = [
-    // projects routes
-
-    {
-        path:'/login',
-        component: login,
-
-    },
-    {
-        path:'/testvuex',
-        component: usecom,
-
-    },
+  
     {
         path:'/dashboard',
-        component: home,
+        component: dashboard,
 
     },
     {
-        path:'/tags',
-        component: tags,
+        path:'/',
+        component: dashboard,
 
     },
     {
-        path:'/category',
-        component: category,
+        path:'/post',
+        component: post,
 
     },
     {
-        path:'/reports',
-        component: reports,
+        path:'/comments',
+        component: comments,
 
     },
     {
-        path:'/certificates',
-        component: certificates,
+        path:'/albums',
+        component: albums,
 
     },
     {
-        path:'/records',
-        component: records,
+        path:'/photo',
+        component: photos,
 
     },
     {
-        path:'/officials',
-        component: officials,
+        path:'/todos',
+        component: todos,
 
     },
-    {
-        path:'/batch',
-        component: batch,
+      {
+        path:'/users',
+        component: users,
 
-    },
-    {
-        path:'/events',
-        component: events,
-
-    },
-    {
-        path:'/announcements',
-        component: announcements,
-
-    },
-    {
-        path:'/about',
-        component: about,
-
-    },
-    // basic tutorial routes
-    {
-        path:'/my-new-vue-route',
-        component: firstPage,
-    },
-    {
-        path:'/new-route',
-        component: newRoutePage
-    },
-    // vue hooks
-    {
-        path:'/hooks',
-        component: hooks
-    },
-     // more basics
-     {
-        path:'/methods',
-        component: methods
-    },
+    }
 ]
 
 export default new Router({

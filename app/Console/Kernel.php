@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,6 +15,12 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        'App\Console\Commands\AlbumsCommand',
+        'App\Console\Commands\CommentsCommand',
+        'App\Console\Commands\PhotosCommand',
+        'App\Console\Commands\PostsCommand',
+        'App\Console\Commands\TodoCommand',
+        'App\Console\Commands\UsersCommand',
     ];
 
     /**
@@ -32,6 +39,9 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
+
+  
+
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');

@@ -14,45 +14,56 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/auth', 'AdminController@login');
-Route::post('/login', 'AdminController@getLoginCredentials');
-
-Route::post('app/create_tag','AdminController@addTag');
-Route::get('app/get_tags','AdminController@getTag');
-Route::post('app/edit_tag','AdminController@edit_Tag');
-Route::post('app/delete_tag','AdminController@deleteTag');
-
-Route::post('app/upload','AdminController@upload');
-Route::post('app/delete_image','AdminController@deleteImage');
-
-Route::get('app/get_category','AdminController@getCategory');
-Route::post('app/create_category','AdminController@addCategory');
-Route::post('app/edit_category','AdminController@editCategory');
-Route::post('app/delete_category','AdminController@deleteCategory');
+// Post
+Route::post('app/create_post','PostController@add_Post');
+Route::get('app/get_post', 'PostController@index');
+Route::post('app/edit_post','PostController@edit_Post');
+Route::post('app/delete_post','PostController@delete_Post');
 
 
-//Report
-Route::get('app/get_reports','ReportController@getReports');
-Route::post('app/create_report','ReportController@addReport');
-Route::post('app/edit_report','ReportController@edit_Report');
-Route::post('app/delete_report','ReportController@deleteReport');
+// comments
+Route::post('app/create_comment','CommentsController@add_Comment');
+Route::get('app/get_comments', 'CommentsController@index');
+Route::post('app/edit_comment','CommentsController@edit_Comment');
+Route::post('app/delete_comment','CommentsController@delete_Comment');
 
-//Record
-Route::get('app/get_records','RecordController@getRecords');
-Route::post('app/create_record','RecordController@addRecord');
-Route::post('app/edit_record','RecordController@edit_Record');
-Route::post('app/delete_record','RecordController@deleteRecord');
+
+// Albums
+Route::post('app/create_album','AlbumsController@add_Album');
+Route::get('app/get_albums', 'AlbumsController@index');
+Route::post('app/edit_album','AlbumsController@edit_Album');
+Route::post('app/delete_album','AlbumsController@delete_Album');
+
+
+
+// Photos
+Route::post('app/create_photo','PhotosController@add_Photo');
+Route::get('app/get_photos', 'PhotosController@index');
+Route::post('app/edit_photo','PhotosController@edit_Photo');
+Route::post('app/delete_photo','PhotosController@delete_Photo');
+
+
+// Todos
+Route::post('app/create_todo','TodosController@add_Todo');
+Route::get('app/get_todos', 'TodosController@index');
+Route::post('app/edit_todo','TodosController@edit_Todo');
+Route::post('app/delete_todo','TodosController@delete_Todo');
+
+
+// Todos
+Route::post('app/create_user','UsersController@add_User');
+Route::get('app/get_users', 'UsersController@index');
+Route::post('app/edit_user','UsersController@edit_User');
+Route::post('app/delete_user','UsersController@delete_User');
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/testpage','TestController@index');
-
-// Route::get('/tags', '')
 Route::any('{slug}', function(){
     return view('dashboard');
 });

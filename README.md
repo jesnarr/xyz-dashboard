@@ -9,6 +9,6 @@ To start the project
 <p> Create xyz database </p>
 <p> migrate database table </p>
 
-To populate data to database
+<p>To populate data to database<p>
 <small> # php artisan posts:fetch </small>
 

@@ -1,7 +1,7 @@
 To start the project
 
-<p> npm i </p>
-<p> composer i</>
+<p> #npm i </p>
+<p> #composer i</>
 
 
 <p>php artisan serve</p>

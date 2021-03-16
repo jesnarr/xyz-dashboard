@@ -1,14 +1,14 @@
 To start the project
 
-<p> #npm i </p>
-<p> #composer i</>
+<small> #npm i </small>
+<small> #composer i</small>
 
 
-<p>php artisan serve</p>
+<small> #php artisan serve</small>
 
 <p> Create xyz database </p>
 <p> migrate database table </p>
 
 To populate data to database
-<p>php artisan posts:fetch </p>
+<small> # php artisan posts:fetch </small>
 
